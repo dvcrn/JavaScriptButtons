@@ -111,6 +111,7 @@ PAYPAL.apps = PAYPAL.apps || {};
 			// Subscribe buttons
 			} else if (type === 'subscribe') {
 				data.add('cmd', '_xclick-subscriptions');
+				data.add('src', '1');
 
 				// TODO: "amount" cannot be used in prettyParams since it's overloaded
 				// Find a better way to do this
@@ -279,7 +280,7 @@ PAYPAL.apps = PAYPAL.apps || {};
 					//on - Option Name
 					input.name = 'on' + item.displayOrder;
 					input.value = fieldDetails.label;
-				
+
 					selector = selectElem.cloneNode(true);
 					//os - Option Select
 					selector.name = 'os' + item.displayOrder;
@@ -311,12 +312,12 @@ PAYPAL.apps = PAYPAL.apps || {};
 					labelText = fieldDetails.label || item.key;
 					label.htmlFor = item.key;
 					label.appendChild(document.createTextNode(labelText));
-					
+
 					input = hidden.cloneNode(true);
 					input.name = 'on' + item.displayOrder;
 					input.value = fieldDetails.label;
 					label.appendChild(input);
-					
+
 					input = inputTextElem.cloneNode(true);
 					input.name = 'os' + item.displayOrder;
 					input.value = fieldDetails.options[0] || '';
@@ -446,7 +447,7 @@ PAYPAL.apps = PAYPAL.apps || {};
 		processCustomFieldValues(customFields, dataset);
 		return dataset;
 	}
-	
+
 	function processCustomFieldValues(customFields, dataset) {
 		//Read all custom field values and create a structured object
 		var result = {}, keyValuePairs, name, nameParts, accessor, cursor;
